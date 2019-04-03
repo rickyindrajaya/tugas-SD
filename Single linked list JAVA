@@ -1,0 +1,68 @@
+public class MainLinkedList{
+
+    ClassLinkedList head;
+
+    public MainLinkedList(int val) {
+        head = new ClassLinkedList(val);//menginisialisasikan node lihat class data.java
+    }
+
+    public void tambahData(int val) {//menambahkan data
+        ClassLinkedList tmpSimpul = head;//membuat variable baru dengan tipe data
+        while (tmpSimpul.next != null) {
+            tmpSimpul = tmpSimpul.next;
+        }
+        tmpSimpul.next = new ClassLinkedList(val);
+    }
+
+    public void delete(int val) {
+        ClassLinkedList prevSimpul = null;
+        ClassLinkedList SimpulSekarang = head;
+
+        if (head.num == val) {
+            head = head.next;
+            return;
+        }
+
+        while (SimpulSekarang != null && SimpulSekarang.num != val) {
+            prevSimpul = SimpulSekarang;
+            SimpulSekarang = SimpulSekarang.next;
+        }
+
+        if (SimpulSekarang == null) {
+            System.out.println("DATA TIDAK TERSEDIA");
+        } else {
+            prevSimpul.next = SimpulSekarang.next;
+        }
+
+    }
+
+    public void print() {
+        ClassLinkedList tmpSimpul = head;
+        while (tmpSimpul != null) {
+            System.out.print(tmpSimpul.num + " -> ");
+            tmpSimpul = tmpSimpul.next;
+        }
+        System.out.print("null");
+        System.out.println("");
+    }
+
+    public static void main(String[] args) {
+        MainLinkedList List = new MainLinkedList(2);
+        List.print();
+        System.out.println("");
+        System.out.println("===PROGRAM LINKED LIST===");
+        System.out.println("Tambah List data :");
+        List.tambahData(4);
+        List.tambahData(10);
+        List.print();
+        System.out.println("");
+        System.out.println("Tambah List delete :");
+        List.delete(10);
+        List.print();
+        System.out.println("");
+        System.out.println("Tambah tambah :");
+        List.tambahData(100);
+        List.print();
+    }
+
+}
